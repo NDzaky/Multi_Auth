@@ -1,0 +1,70 @@
+  body {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #020617;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .nav-bar {  
+    margin-right: auto;
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background-color: #3a3a3a;
+    box-shadow: inset 0px 0px 15px 0px rgb(29, 29, 29);
+  }
+  .nav-bar a {    
+    margin-right: 20px;
+  }
+  .aksi{
+    display: flex;
+    margin-left: auto;
+  }
+  .neon-button {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #272727;
+    border: 2px solid #0ff;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 20px 0px rgb(12, 12, 12);  
+    transition: border-color 0.8s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+
+  .neon-button:hover {
+    border-color: transparent;
+    box-shadow: 0 0 4px #0ff, 0 0 5px #0ff, 0 0 5px #0ff;
+  }
+
+  .drop {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 255, 255, 0.8);
+    animation: drop 5s forwards;
+    pointer-events: none;
+  }
+
+  @keyframes drop {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
