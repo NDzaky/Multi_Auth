@@ -36,7 +36,6 @@ class DevisiController extends Controller
 
         return redirect()->route('devisi.index')->with(['success' => 'Devisi Berhasil Dibuat!']);
     }
-
     public function show(int $id): View
     {
         $devisi = Devisi::with('anggota')->findOrFail($id);
