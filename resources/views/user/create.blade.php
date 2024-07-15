@@ -1,11 +1,15 @@
-<x-app-layout>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Create User</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body, h1, label, input, button {
+                color: white;
+            }
+        </style>
     </head>
-    <body style="background: rgb(177, 175, 175)">
+    <body style="background: rgb(39, 39, 39)">
         @auth
             @php
                 $user = Auth::user();
@@ -18,7 +22,7 @@
                                 <div class="card-header">
                                     <h3>Create User</h3>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body bg-dark">
                                     <form action="{{ route('user.store') }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
@@ -67,4 +71,3 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-</x-app-layout>

@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Company</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, h1, label, input, button {
+            color: white;
+        }
+    </style>
 </head>
-<body style="background: rgb(177, 175, 175)">
+<body style="background: rgb(34, 34, 34)">
     @auth
     @php
         $user = Auth::user();
@@ -20,7 +25,7 @@
                     <h3 class="text-center my-4">Create Company</h3>
                     <hr>
                 </div>
-                <div class="card border-0 shadow-sm rounded">
+                <div class="card border-0 shadow-sm rounded bg-dark">
                     <div class="card-body">
                         <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf

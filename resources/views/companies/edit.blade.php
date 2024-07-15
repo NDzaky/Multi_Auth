@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Company</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, h1, label, input, button {
+            color: white;
+        }
+    </style>
 </head>
-<body style="background: lightgray">
+<body>
     @auth
     @php
         $user = Auth::user();
@@ -16,7 +21,7 @@
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="card border-0 shadow-sm rounded">
+                <div class="card border-0 shadow-sm rounded bg-dark">
                     <div class="card-body">
                         <form action="{{ route('companies.update', $company->id) }}" method="POST" enctype="multipart/form-data">
                         
@@ -48,7 +53,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Email</label>
+                                <label class="font-weight-bold col">Email</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $company->email) }}" placeholder="Enter Company Email">
                             
                                 <!-- error message for email -->

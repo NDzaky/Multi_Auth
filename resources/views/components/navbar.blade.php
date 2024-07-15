@@ -1,36 +1,26 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-dark-100" style="box-shadow: 0px 0px 7px 5px rgb(0, 204, 255)">
-    <a class="navbar-brand" href="#" style="color: #90c7dd;">Navbar</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" style="display: flex">
-                <a class="nav-link" href="/" style="color: #40E0D0;">Home</a>
-                @auth
-                    <a class="nav-link" href="{{ route('dashboard.redirect') }}" style="color: #40E0D0;">Dashboard</a>
-                @endauth
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}" style="color: #40E0D0;">Log in</a>
-                </li>
-                @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}" style="color: #40E0D0;">Register</a>
-                    </li>
-                @endif
-            @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}" style="color: #40E0D0;"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Log out
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<nav class="navbar navbar-expand px-3 border-bottom">
+    <button class="btn" id="sidebar-toggle" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                    {{ Auth::user()->first_name }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a href="/profile" class="dropdown-item">Profile</a>
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
+
+                        <x-dropdown-link :href="route('logout')" style="color: #ff0000;"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
                     </form>
-                </li>
-            @endguest
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
