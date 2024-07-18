@@ -41,9 +41,9 @@
                             </div>
                             <div class="form-group mt-3">
                                 <label for="pegawai_ids">Nama Anggota</label>
-                                <div class="form-check">
+                                <div class="d-flex flex-wrap">
                                     @foreach($pegawais as $pegawai)
-                                        <div>
+                                        <div class="form-check me-3 mb-2">
                                             <input type="checkbox" class="form-check-input" name="pegawai_ids[]" value="{{ $pegawai->id }}" 
                                                 {{ in_array($pegawai->id, $devisi->pegawais->pluck('id')->toArray()) ? 'checked' : '' }}>
                                             <label class="form-check-label">{{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}</label>

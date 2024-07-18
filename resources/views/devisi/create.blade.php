@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,14 +40,16 @@
                             </div>
                             <div class="form-group mt-3">
                                 <label for="pegawai_ids">Nama Anggota</label>
-                                @foreach($pegawais as $pegawai)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="pegawai_ids[]" value="{{ $pegawai->id }}" id="pegawai{{ $pegawai->id }}">
-                                        <label class="form-check-label" for="pegawai{{ $pegawai->id }}">
-                                            {{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}
-                                        </label>
-                                    </div>
-                                @endforeach
+                                <div class="d-flex flex-wrap">
+                                    @foreach($pegawais as $pegawai)
+                                        <div class="form-check me-3 mb-2">
+                                            <input class="form-check-input" type="checkbox" name="pegawai_ids[]" value="{{ $pegawai->id }}" id="pegawai{{ $pegawai->id }}">
+                                            <label class="form-check-label" for="pegawai{{ $pegawai->id }}">
+                                                {{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                                 @error('pegawai_ids')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}

@@ -51,7 +51,7 @@
                                     <td>{{ $company->email }}</td>
                                     <td><a href="{{ $company->website }}">{{ $company->website }}</a></td>
                                     <td>
-                                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin')
+                                        @if (Auth::user()->role == 'superadmin')
                                         <form class="delete-form" action="{{ route('companies.destroy', $company->id) }}" method="POST">
                                             <a href="{{ route('companies.show', $company->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                                             <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-sm btn-primary">EDIT</a>

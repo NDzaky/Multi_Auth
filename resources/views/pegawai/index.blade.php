@@ -26,7 +26,7 @@
                 <div class="card border-0">
                     <div class="card-header">
                         <h5 class="card-title">Data Pegawai</h5>
-                        @if (Auth::user()->role == 'superadmin')
+                        @if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'admin')
                             <a href="{{ route('pegawai.create') }}" class="btn btn-md btn-success mb-3">Tambah</a>
                         @endif
                     </div>
