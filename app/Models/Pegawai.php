@@ -1,4 +1,5 @@
 <?php
+// App\Models\Pegawai.php
 
 namespace App\Models;
 
@@ -20,5 +21,10 @@ class Pegawai extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function devisis()
+    {
+        return $this->belongsToMany(Devisi::class, 'devisi_pegawai');
     }
 }

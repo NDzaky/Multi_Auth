@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,21 +41,20 @@
                                 @enderror
                             </div>
                             <div class="form-group mt-3">
-                                <label for="anggota_id">Nama Anggota</label>
-                                <select class="form-control @error('anggota_id') is-invalid @enderror" name="anggota_id">
-                                    <option value="">Pilih Anggota</option>
-                                    @foreach($pegawais as $pegawai)
-                                        <option value="{{ $pegawai->id }}" {{ old('anggota_id') == $pegawai->id ? 'selected' : '' }}>
+                                <label for="pegawai_ids">Nama Anggota</label>
+                                @foreach($pegawais as $pegawai)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="pegawai_ids[]" value="{{ $pegawai->id }}" id="pegawai{{ $pegawai->id }}">
+                                        <label class="form-check-label" for="pegawai{{ $pegawai->id }}">
                                             {{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('anggota_id')
+                                        </label>
+                                    </div>
+                                @endforeach
+                                @error('pegawai_ids')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
                                 @enderror
-                                
                             </div>
                             <button type="submit" class="btn btn-md btn-primary mt-4">Save</button>
                             <a href="{{ route('devisi.index') }}" class="btn btn-md btn-secondary mt-4">Back</a>
@@ -65,10 +66,10 @@
     </div>
     @else
     <center> <h1>sederhana saja</h1></center>
- @endif
-@else
- <h1>Login dulu</h1>
-@endauth
+    @endif
+    @else
+    <h1>Login dulu</h1>
+    @endauth
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

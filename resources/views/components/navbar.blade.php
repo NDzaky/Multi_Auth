@@ -9,7 +9,6 @@
                     {{ Auth::user()->first_name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a href="/profile" class="dropdown-item">Profile</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 

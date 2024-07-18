@@ -12,7 +12,7 @@ class PegawaiController extends Controller
 {
     public function index(): View
     {
-        $pegawais = Pegawai::latest()->paginate(5);
+        $pegawais = Pegawai::with('company', 'devisis')->latest()->paginate(5);
         return view('pegawai.index', compact('pegawais'));
     }
 
@@ -27,7 +27,7 @@ class PegawaiController extends Controller
         $request->validate([
             'nama_depan' => 'required|string|max:255',
             'nama_belakang' => 'required|string|max:255',
-            'company_id' => 'required|exists:companies,id',
+            'company_id' => 'nullable|exists:companies,id',
             'email' => 'required|email',
             'nomor' => 'required|string|max:20',
         ]);
@@ -55,7 +55,7 @@ class PegawaiController extends Controller
         $request->validate([
             'nama_depan' => 'required|string|max:255',
             'nama_belakang' => 'required|string|max:255',
-            'company_id' => 'required|exists:companies,id',
+            'company_id' => 'nullable|exists:companies,id',
             'email' => 'required|email',
             'nomor' => 'required|string|max:20',
         ]);

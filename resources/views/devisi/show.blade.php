@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Show Devisi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h3{
+            color: #fff;
+        }
+    </style>
 </head>
-<body style="background: lightgray">
+<body style="background: rgb(24, 23, 23)">
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -23,7 +28,13 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="nama_anggota">Nama Anggota</label>
-                            <input type="text" class="form-control" name="nama_anggota" value="{{ $devisi->anggota->nama_depan }} {{ $devisi->anggota->nama_belakang }}" disabled>
+                            <ul class="list-group">
+                                @forelse ($devisi->pegawais as $pegawai)
+                                    <li class="list-group-item">{{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}</li>
+                                @empty
+                                    <li class="list-group-item">No anggota</li>
+                                @endforelse
+                            </ul>
                         </div>
                         <a href="{{ route('devisi.index') }}" class="btn btn-md btn-secondary mt-4">Back</a>
                     </div>

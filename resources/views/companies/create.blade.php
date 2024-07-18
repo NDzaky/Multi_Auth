@@ -17,7 +17,7 @@
     @php
         $user = Auth::user();
     @endphp
-    @if ($user && ($user->role == 'admin' || $user->role == 'superadmin'))
+    @if ($user && ($user->role == 'superadmin'))
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">

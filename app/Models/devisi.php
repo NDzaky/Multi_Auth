@@ -1,5 +1,7 @@
 <?php
 
+// app/Models/Devisi.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,13 +11,10 @@ class Devisi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_devisi',
-        'anggota_id',
-    ];
+    protected $fillable = ['nama_devisi'];
 
-    public function anggota()
+    public function pegawais()
     {
-        return $this->belongsTo(Pegawai::class, 'anggota_id');
+        return $this->belongsToMany(Pegawai::class, 'devisi_pegawai');
     }
 }

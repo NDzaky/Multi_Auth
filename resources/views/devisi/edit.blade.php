@@ -12,7 +12,7 @@
         }
     </style>
 </head>
-<body style="background: lightgray">
+<body style="background: rgb(20, 20, 20)">
     @auth
     @php
         $user = Auth::user();
@@ -40,13 +40,17 @@
                                 @enderror
                             </div>
                             <div class="form-group mt-3">
-                                <label for="anggota_id">Nama Anggota</label>
-                                <select class="form-control @error('anggota_id') is-invalid @enderror" name="anggota_id">
+                                <label for="pegawai_ids">Nama Anggota</label>
+                                <div class="form-check">
                                     @foreach($pegawais as $pegawai)
-                                        <option value="{{ $pegawai->id }}" {{ $pegawai->id == $devisi->anggota_id ? 'selected' : '' }}>{{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}</option>
+                                        <div>
+                                            <input type="checkbox" class="form-check-input" name="pegawai_ids[]" value="{{ $pegawai->id }}" 
+                                                {{ in_array($pegawai->id, $devisi->pegawais->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                            <label class="form-check-label">{{ $pegawai->nama_depan }} {{ $pegawai->nama_belakang }}</label>
+                                        </div>
                                     @endforeach
-                                </select>
-                                @error('anggota_id')
+                                </div>
+                                @error('pegawai_ids')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
@@ -62,10 +66,10 @@
     </div>
     @else
     <center> <h1>sederhana saja</h1></center>
- @endif
-@else
- <h1>Login dulu</h1>
-@endauth
+    @endif
+    @else
+     <h1>Login dulu</h1>
+    @endauth
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <?php
 
+// database/migrations/create_devisi_table.php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +16,7 @@ return new class extends Migration
         Schema::create('devisis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_devisi');
-            $table->unsignedBigInteger('anggota_id');
             $table->timestamps();
-            // Tambahkan foreign key
-            $table->foreign('anggota_id')->references('id')->on('pegawais')->onDelete('cascade');
         });
     }
 
@@ -29,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('devisis');
     }
 };
+

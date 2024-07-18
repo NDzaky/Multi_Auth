@@ -17,7 +17,7 @@
     @php
         $user = Auth::user();
     @endphp
-    @if ($user && ($user->role == 'admin' || $user->role == 'superadmin'))
+    @if ($user && ($user->role == 'superadmin'))
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -88,12 +88,11 @@
         </div>
     </div>
     @else
-    <center> <h1>sederhana saja</h1></center>
- @endif
-@else
- <h1>Login dulu</h1>
-@endauth
-
+    <center><h1>Sederhana saja</h1></center>
+    @endif
+    @else
+    <h1>Login dulu</h1>
+    @endauth
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

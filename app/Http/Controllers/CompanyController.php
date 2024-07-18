@@ -176,13 +176,10 @@ class CompanyController extends Controller
     {
         // Ambil data company berdasarkan ID
         $company = Company::findOrFail($id);
-
-        // Hapus gambar
-        Storage::delete('public/img/'. $company->logo);
-
+        // Hapus gambar dari storage
+        Storage::delete('public/img/' . $company->logo);
         // Hapus data company
         $company->delete();
-
         // Redirect ke halaman index dengan pesan berhasil
         return redirect()->route('companies.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }

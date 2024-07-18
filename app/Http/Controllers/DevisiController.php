@@ -1,4 +1,5 @@
 <?php
+// app/Http/Controllers/DevisiController.php
 
 namespace App\Http\Controllers;
 
@@ -12,7 +13,7 @@ class DevisiController extends Controller
 {
     public function index(): View
     {
-        $devisis = Devisi::with('anggota')->paginate(5);
+        $devisis = Devisi::with('pegawais')->paginate(5);
         return view('devisi.index', compact('devisis'));
     }
 
@@ -26,25 +27,27 @@ class DevisiController extends Controller
     {
         $request->validate([
             'nama_devisi' => 'required',
-            'anggota_id' => 'nullable|exists:pegawais,id',
+            'pegawai_ids' => 'array|exists:pegawais,id',
         ]);
 
-        Devisi::create([
+        $devisi = Devisi::create([
             'nama_devisi' => $request->nama_devisi,
-            'anggota_id' => $request->anggota_id,
         ]);
+
+        $devisi->pegawais()->sync($request->pegawai_ids);
 
         return redirect()->route('devisi.index')->with(['success' => 'Devisi Berhasil Dibuat!']);
     }
+
     public function show(int $id): View
     {
-        $devisi = Devisi::with('anggota')->findOrFail($id);
+        $devisi = Devisi::with('pegawais')->findOrFail($id);
         return view('devisi.show', compact('devisi'));
     }
 
     public function edit(int $id): View
     {
-        $devisi = Devisi::findOrFail($id);
+        $devisi = Devisi::with('pegawais')->findOrFail($id);
         $pegawais = Pegawai::all();
         return view('devisi.edit', compact('devisi', 'pegawais'));
     }
@@ -53,14 +56,15 @@ class DevisiController extends Controller
     {
         $request->validate([
             'nama_devisi' => 'required',
-            'anggota_id' => 'nullable|exists:pegawais,id',
+            'pegawai_ids' => 'array|exists:pegawais,id',
         ]);
 
         $devisi = Devisi::findOrFail($id);
         $devisi->update([
             'nama_devisi' => $request->nama_devisi,
-            'anggota_id' => $request->anggota_id,
         ]);
+
+        $devisi->pegawais()->sync($request->pegawai_ids);
 
         return redirect()->route('devisi.index')->with(['success' => 'Devisi Berhasil Diubah!']);
     }

@@ -14,13 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(40)->create();
+        User::factory(10)->create();
 
         $users = [
             [
                 'first_name' => 'Normal',
                 'last_name' => 'User',
-                'phone' => '08566661111',
                 'email' => 'User@example.com',
                 'password' => Hash::make('password'),
                 'role' => 'user',
@@ -28,7 +27,6 @@ class DatabaseSeeder extends Seeder
             [
                 'first_name' => 'Admin',
                 'last_name' => 'User',
-                'phone' => '08566662222',
                 'email' => 'admin@example.com',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
@@ -36,7 +34,6 @@ class DatabaseSeeder extends Seeder
             [
                 'first_name' => 'Superadmin',
                 'last_name' => 'User',
-                'phone' => '08566663333',
                 'email' => 'superadmin@example.com',
                 'password' => Hash::make('password'),
                 'role' => 'superadmin',

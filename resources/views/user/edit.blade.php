@@ -11,12 +11,12 @@
         }
     </style>
 </head>
-<body style="background: rgb(41, 41, 41)">
+<body style="background: rgb(29, 28, 28)">
     @auth
     @php
-        $authUser = Auth::user();
+        $user = Auth::user();
     @endphp
-    @if ($authUser && ($authUser->role == 'admin' || $authUser->role == 'superadmin'))
+    @if ($user && ($user->role == 'superadmin' || $user->role == 'admin'))
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -41,7 +41,7 @@
                                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password (leave blank to keep current password)</label>
+                                <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="mb-3">
@@ -52,8 +52,8 @@
                                 <label for="role" class="form-label">Role</label>
                                 <select class="form-control" id="role" name="role" required>
                                     <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                                    @if ($user->role == 'superadmin')
                                     <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    @if ($authUser->role == 'superadmin')
                                     <option value="superadmin" {{ $user->role == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
                                     @endif
                                 </select>
@@ -66,11 +66,12 @@
         </div>
     </div>
     @else
-    <center> <h1>sederhana saja</h1></center>
+    <center><h1>sederhana saja</h1></center>
     @endif
     @else
     <h1>Login dulu</h1>
     @endauth
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

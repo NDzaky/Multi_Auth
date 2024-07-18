@@ -12,12 +12,12 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: black">
     @auth
     @php
         $user = Auth::user();
     @endphp
-    @if ($user && ($user->role == 'admin' || $user->role == 'superadmin'))
+    @if ($user->role == 'superadmin')
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -86,8 +86,8 @@
         </div>
     </div>
     @else
-    <center> <h1>sederhana saja</h1></center>
- @endif
+        <center> <h1>sederhana saja</h1></center>
+    @endif
 @else
  <h1>Login dulu</h1>
 @endauth

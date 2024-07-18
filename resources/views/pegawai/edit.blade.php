@@ -12,7 +12,7 @@
         }
     </style>
 </head>
-<body style="background: rgb(59, 59, 59)">
+<body style="background: rgb(17, 17, 17)">
     @auth
     @php
         $user = Auth::user();
